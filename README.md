@@ -1221,19 +1221,3 @@ The concepts learned throughout this lab provide the foundation for future proje
 
 \---
 
-
-
-\## Next Project
-
-
-
-➡️ \*\*Developer Workstation Automation\*\*
-
-
-
-Build a PowerShell based automation toolkit to streamline project creation, Git workflows, screenshot organization, and development environment setup.
-
-
-
-Following that, the next Kubernetes project will focus on deploying a \*\*production grade multi-tier application\*\* using the concepts learned throughout this lab.
-
