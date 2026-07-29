@@ -5,19 +5,6 @@
 > A Kubernetes cluster built from scratch using \*\*kubeadm\*\* on \*\*Ubuntu Server\*\* hosted in \*\*Google Cloud Platform (GCP)\*\*.
 
 
-
-!\[Status](https://img.shields.io/badge/Status-Completed-brightgreen)
-
-!\[Platform](https://img.shields.io/badge/Platform-Google%20Cloud-blue)
-
-!\[OS](https://img.shields.io/badge/OS-Ubuntu%2024.04-orange)
-
-!\[Orchestration](https://img.shields.io/badge/Kubernetes-v1.34-blue)
-
-!\[Runtime](https://img.shields.io/badge/Runtime-containerd-lightgrey)
-
-
-
 \---
 
 
