@@ -1,15 +1,12 @@
-\# Kubernetes Fundamentals Lab
+# Kubernetes Fundamentals Lab
 
 
 
 > A Kubernetes cluster built from scratch using \*\*kubeadm\*\* on \*\*Ubuntu Server\*\* hosted in \*\*Google Cloud Platform (GCP)\*\*.
 
 
-\---
 
-
-
-\## Project Overview
+## Project Overview
 
 
 
@@ -25,11 +22,11 @@ The objective was to understand \*\*why\*\* each Kubernetes component exists, ho
 
 
 
-\---
+---
 
 
 
-\## Objectives
+## Objectives
 
 
 
@@ -55,15 +52,15 @@ The objective was to understand \*\*why\*\* each Kubernetes component exists, ho
 
 
 
-\---
+---
 
 
 
-\# Skills Demonstrated
+# Skills Demonstrated
 
 
 
-\## Kubernetes
+## Kubernetes
 
 
 
@@ -93,7 +90,7 @@ The objective was to understand \*\*why\*\* each Kubernetes component exists, ho
 
 
 
-\## Linux
+## Linux
 
 
 
@@ -109,7 +106,7 @@ The objective was to understand \*\*why\*\* each Kubernetes component exists, ho
 
 
 
-\## Cloud
+## Cloud
 
 
 
@@ -123,7 +120,7 @@ The objective was to understand \*\*why\*\* each Kubernetes component exists, ho
 
 
 
-\## Containers
+## Containers
 
 
 
@@ -135,7 +132,7 @@ The objective was to understand \*\*why\*\* each Kubernetes component exists, ho
 
 
 
-\## Version Control
+## Version Control
 
 
 
@@ -145,11 +142,11 @@ The objective was to understand \*\*why\*\* each Kubernetes component exists, ho
 
 
 
-\---
+---
 
 
 
-\# Technologies Used
+# Technologies Used
 
 
 
@@ -179,11 +176,11 @@ The objective was to understand \*\*why\*\* each Kubernetes component exists, ho
 
 
 
-\---
+---
 
 
 
-\# Project Structure
+# Project Structure
 
 
 
@@ -237,7 +234,7 @@ kubernetes-fundamentals-lab/
 
 
 
-\---
+---
 
 
 
@@ -261,7 +258,7 @@ The following diagram illustrates how an HTTP request travels through the Kubern
 
 
 
-\## Component Responsibilities
+## Component Responsibilities
 
 
 
@@ -283,11 +280,11 @@ The following diagram illustrates how an HTTP request travels through the Kubern
 
 
 
-\---
+---
 
 
 
-\# Why NGINX?
+# Why NGINX?
 
 
 
@@ -299,11 +296,11 @@ Using a lightweight application removed unnecessary complexity and allowed me to
 
 
 
-\---
+---
 
 
 
-\# Implementation Journey
+# Implementation Journey
 
 
 
@@ -311,11 +308,11 @@ Rather than deploying everything at once, the cluster was built incrementally to
 
 
 
-\---
+---
 
 
 
-\## Phase 1 – Cluster Preparation
+## Phase 1 – Cluster Preparation
 
 
 
@@ -341,7 +338,7 @@ Once the required components were installed, the Kubernetes control plane was in
 
 
 
-\### Outcome
+### Outcome
 
 
 
@@ -355,399 +352,192 @@ Once the required components were installed, the Kubernetes control plane was in
 
 
 
-📸 Screenshot:
+📸 Screenshots
 
+![Containerd Running](screenshots/01-containerd-running.png)
 
+![Control Plane Initialized](screenshots/04-control-plane-initialized.png)
 
-`01-containerd-running.png`
+---
 
-
-
-`02-control-plane-initialized.png`
-
-
-
-\---
-
-
-
-\## Phase 2 – Cluster Networking
-
-
+## Phase 2 – Cluster Networking
 
 A Kubernetes cluster cannot schedule application Pods until networking has been configured.
 
-
-
 To solve this, Calico CNI (Container Network Interface) was installed.
-
-
 
 Calico provides networking between Pods and allows Kubernetes to assign Pod IP addresses and route traffic correctly throughout the cluster.
 
+After installation, every system Pod entered the **Running** state, confirming that networking had been configured successfully.
 
+### Outcome
 
-After installation, every system Pod entered the \*\*Running\*\* state, confirming that networking had been configured successfully.
+- Calico installed
+- Pod networking enabled
+- Cluster healthy
 
+📸 Screenshot
 
+![Cluster Healthy](screenshots/03-cluster-healthy.png)
 
-\### Outcome
+---
 
-
-
-\- Calico installed
-
-\- Pod networking enabled
-
-\- Cluster healthy
-
-
-
-📸 Screenshot:
-
-
-
-`03-cluster-health.png`
-
-
-
-\---
-
-
-
-\## Phase 3 – First Workload Deployment
-
-
+## Phase 3 – First Workload Deployment
 
 With the cluster operational, the first application was deployed.
 
-
-
-Rather than manually creating Pods, a Kubernetes \*\*Deployment\*\* was created.
-
-
+Rather than manually creating Pods, a Kubernetes **Deployment** was created.
 
 The Deployment automatically created a ReplicaSet, which in turn created the required Pod.
 
-
-
 This demonstrated Kubernetes' declarative model.
-
-
 
 Instead of telling Kubernetes:
 
-
-
 > Create one Pod.
-
-
 
 The desired state was declared:
 
-
-
 > I always want one running Pod.
 
+### Outcome
 
+- Deployment created
+- ReplicaSet created automatically
+- First Pod running
 
-\### Outcome
+📸 Screenshot
 
+![First Pod Running](screenshots/06-first-pod-running.png)
 
+---
 
-\- Deployment created
-
-\- ReplicaSet created automatically
-
-\- First Pod running
-
-
-
-📸 Screenshot:
-
-
-
-`04-first-deployment.png`
-
-
-
-\---
-
-
-
-\## Phase 4 – Service Networking
-
-
+## Phase 4 – Service Networking
 
 Pods receive dynamic IP addresses.
 
-
-
 If a Pod is recreated, its IP address changes.
 
-
-
-To solve this problem, a \*\*ClusterIP Service\*\* was created.
-
-
+To solve this problem, a **ClusterIP Service** was created.
 
 Instead of applications communicating directly with Pods, they communicate with the Service.
 
-
-
 The Service continuously discovers healthy Pods using labels and selectors.
-
-
 
 This abstraction allows Pods to be replaced without affecting application communication.
 
+### Outcome
 
+- Stable networking endpoint created
+- Service connected to Deployment
+- Traffic successfully routed to Pods
 
-\### Outcome
+📸 Screenshot
 
+![Service Created](screenshots/07-service-created.png)
 
+---
 
-\- Stable networking endpoint created
-
-\- Service connected to Deployment
-
-\- Traffic successfully routed to Pods
-
-
-
-📸 Screenshot:
-
-
-
-`05-service-created.png`
-
-
-
-\---
-
-
-
-\## Phase 5 – Horizontal Scaling
-
-
+## Phase 5 – Horizontal Scaling
 
 The Deployment was scaled from one replica to three replicas.
 
-
-
 Rather than manually creating additional Pods, the Deployment's replica count was increased.
-
-
 
 The ReplicaSet automatically scheduled additional Pods until the desired state was reached.
 
-
-
 This demonstrated Kubernetes' ability to horizontally scale workloads.
 
+### Outcome
 
+- Three Pods running
+- ReplicaSet maintained desired state
+- Application horizontally scaled
 
-\### Outcome
+📸 Screenshot
 
+![Scaled to Three Replicas](screenshots/08-scaled-to-three-replicas.png)
 
+---
 
-\- Three Pods running
-
-\- ReplicaSet maintained desired state
-
-\- Application horizontally scaled
-
-
-
-📸 Screenshot:
-
-
-
-`06-scaled-to-three-replicas.png`
-
-
-
-\---
-
-
-
-\## Phase 6 – Self Healing
-
-
+## Phase 6 – Self Healing
 
 To verify Kubernetes self healing, one running Pod was intentionally deleted.
 
-
-
 Instead of leaving the application with only two running Pods, the ReplicaSet immediately detected that the desired state no longer matched reality.
-
-
 
 A replacement Pod was created automatically.
 
-
-
 No manual intervention was required.
-
-
 
 This demonstrated one of Kubernetes' most important capabilities.
 
+### Outcome
 
+- Pod intentionally deleted
+- ReplicaSet detected failure
+- Replacement Pod created automatically
 
-\### Outcome
+📸 Screenshot
 
+![Self Healing Pod Recreated](screenshots/09-self-healing-pod-recreated.png)
 
+---
 
-\- Pod intentionally deleted
+## Phase 7 – Rolling Updates
 
-\- ReplicaSet detected failure
-
-\- Replacement Pod created automatically
-
-
-
-📸 Screenshot:
-
-
-
-`07-self-healing.png`
-
-
-
-\---
-
-
-
-\## Phase 7 – Rolling Updates
-
-
-
-The Deployment image was updated from the original image to \*\*nginx:stable\*\*.
-
-
+The Deployment image was updated from the original image to **nginx:stable**.
 
 Instead of deleting every Pod simultaneously, Kubernetes performed a rolling update.
 
-
-
 A new ReplicaSet was created.
-
-
 
 New Pods became healthy before older Pods were terminated.
 
-
-
 This ensured application availability throughout the update.
-
-
 
 The previous ReplicaSet remained available for rollback if required.
 
+### Outcome
 
+- New ReplicaSet created
+- Rolling update completed successfully
+- Previous ReplicaSet retained for rollback
 
-\### Outcome
+📸 Screenshots
 
+![Rolling Update Complete](screenshots/11-rolling-update-complete.png)
 
+![Rolling Update ReplicaSet History](screenshots/12-rolling-update-replicaset-history.png)
 
-\- New ReplicaSet created
+---
 
-\- Rolling update completed successfully
-
-\- Previous ReplicaSet retained for rollback
-
-
-
-📸 Screenshots:
-
-
-
-`08-rolling-update.png`
-
-
-
-`09-replicaset-history.png`
-
-
-
-\---
-
-
-
-\## Phase 8 – Ingress
-
-
+## Phase 8 – Ingress
 
 The NGINX Ingress Controller was installed.
 
-
-
 An Ingress resource was then created to define HTTP routing rules for the application.
-
-
 
 This completed the full networking path from incoming traffic to the application Pods.
 
+### Outcome
+
+- Ingress Controller installed
+- Ingress resource created
+- HTTP routing configured successfully
+
+📸 Screenshots
+
+![Ingress Controller Running](screenshots/13-ingress-controller-running.png)
+
+![Ingress Resource Created](screenshots/14-ingress-resource-created.png)
 
 
-Request Flow:
-
-
-
-```
-
-Internet
-
-&#x20;       ↓
-
-Ingress Controller
-
-&#x20;       ↓
-
-Ingress
-
-&#x20;       ↓
-
-Service
-
-&#x20;       ↓
-
-Pods
-
-```
+---
 
 
 
-\### Outcome
-
-
-
-\- Ingress Controller installed
-
-\- Ingress resource created
-
-\- HTTP routing configured successfully
-
-
-
-📸 Screenshots:
-
-
-
-`10-ingress-controller.png`
-
-
-
-`11-ingress-resource.png`
-
-
-
-\---
-
-
-
-\# Engineering Decisions
+# Engineering Decisions
 
 
 
@@ -755,7 +545,7 @@ Throughout this project several design decisions were made intentionally to maxi
 
 
 
-\## Why NGINX?
+## Why NGINX?
 
 
 
@@ -763,11 +553,11 @@ A lightweight container allowed the project to focus entirely on Kubernetes conc
 
 
 
-\---
+---
 
 
 
-\## Why containerd instead of Docker?
+## Why containerd instead of Docker?
 
 
 
@@ -779,11 +569,11 @@ Modern Kubernetes distributions use \*\*containerd\*\* as the default runtime, m
 
 
 
-\---
+---
 
 
 
-\## Why Deployments instead of manually creating Pods?
+## Why Deployments instead of manually creating Pods?
 
 
 
@@ -795,11 +585,11 @@ Creating Pods directly would bypass many of Kubernetes' most important features.
 
 
 
-\---
+---
 
 
 
-\## Why use a ClusterIP Service?
+## Why use a ClusterIP Service?
 
 
 
@@ -815,11 +605,11 @@ Applications communicate with the Service instead of individual Pods.
 
 
 
-\---
+---
 
 
 
-\## Why install an Ingress Controller?
+## Why install an Ingress Controller?
 
 
 
@@ -835,11 +625,11 @@ Separating configuration from implementation is one of Kubernetes' core design p
 
 
 
-\---
+---
 
 
 
-\# Verification
+# Verification
 
 
 
@@ -895,11 +685,11 @@ The following functionality was successfully demonstrated throughout the project
 
 
 
-\---
+---
 
 
 
-\# Screenshots
+# Screenshots
 
 
 
@@ -935,11 +725,11 @@ The following screenshots document the major milestones completed throughout thi
 
 
 
-\---
+---
 
 
 
-\# Troubleshooting
+# Troubleshooting
 
 
 
@@ -947,7 +737,7 @@ One of the most valuable parts of this project was solving real engineering prob
 
 
 
-\## Native SSH Configuration
+## Native SSH Configuration
 
 
 
@@ -955,11 +745,11 @@ Instead of relying on the Google Cloud browser console, native SSH access was co
 
 
 
-\---
+---
 
 
 
-\## Pending Pods
+## Pending Pods
 
 
 
@@ -971,11 +761,11 @@ Installing Calico resolved the issue and allowed Kubernetes to assign Pod IP add
 
 
 
-\---
+---
 
 
 
-\## Understanding Desired State
+## Understanding Desired State
 
 
 
@@ -991,11 +781,11 @@ Instead, Kubernetes immediately recreates the missing Pod until the desired repl
 
 
 
-\---
+---
 
 
 
-\## Rolling Updates
+## Rolling Updates
 
 
 
@@ -1007,11 +797,11 @@ The previous ReplicaSet remains available for rollback until it is no longer nee
 
 
 
-\---
+---
 
 
 
-\## Kubernetes Manifests
+## Kubernetes Manifests
 
 
 
@@ -1033,11 +823,11 @@ These fields were removed to produce clean, reusable manifests suitable for vers
 
 
 
-\---
+---
 
 
 
-\# Lessons Learned
+# Lessons Learned
 
 
 
@@ -1087,11 +877,11 @@ That shift made Kubernetes much easier to understand.
 
 
 
-\---
+---
 
 
 
-\# Future Improvements
+# Future Improvements
 
 
 
@@ -1129,11 +919,11 @@ Planned improvements include:
 
 
 
-\---
+---
 
 
 
-\# Repository Highlights
+# Repository Highlights
 
 
 
@@ -1177,11 +967,11 @@ This project demonstrates practical experience with:
 
 
 
-\---
+---
 
 
 
-\# References
+# References
 
 
 
@@ -1199,11 +989,11 @@ This project demonstrates practical experience with:
 
 
 
-\---
+---
 
 
 
-\# Acknowledgements
+# Acknowledgements
 
 
 
@@ -1219,5 +1009,24 @@ The concepts learned throughout this lab provide the foundation for future proje
 
 
 
-\---
+---
 
+<<<<<<< HEAD
+=======
+
+
+## Next Project
+
+
+
+➡️ \*\*Developer Workstation Automation\*\*
+
+
+
+Build a PowerShell based automation toolkit to streamline project creation, Git workflows, screenshot organization, and development environment setup.
+
+
+
+Following that, the next Kubernetes project will focus on deploying a \*\*production grade multi-tier application\*\* using the concepts learned throughout this lab.
+
+>>>>>>> b7b21ac (Fix screenshot links in README)
