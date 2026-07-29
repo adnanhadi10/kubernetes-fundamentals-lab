@@ -3,8 +3,10 @@
 
 
 > A Kubernetes cluster built from scratch using \*\*kubeadm\*\* on \*\*Ubuntu Server\*\* hosted in \*\*Google Cloud Platform (GCP)\*\*.
-![Kubernetes Architecture](architecture/kubernetes-architecture.png)
 
+<p align="center">
+  <img src="architecture/kubernetes-architecture.png" alt="Kubernetes Architecture" width="900">
+</p>
 
 
 ## Key Skills Demonstrated
