@@ -506,7 +506,7 @@ The previous ReplicaSet remained available for rollback if required.
 
 📸 Screenshots
 
-![Rolling Update Complete](screenshots/11-rolling-update-complete.png)
+![Rolling Update Complete](screenshots/11-rolling-update-completed.png)
 
 ![Rolling Update ReplicaSet History](screenshots/12-rolling-update-replicaset-history.png)
 
@@ -1010,23 +1010,3 @@ The concepts learned throughout this lab provide the foundation for future proje
 
 
 ---
-
-<<<<<<< HEAD
-=======
-
-
-## Next Project
-
-
-
-➡️ \*\*Developer Workstation Automation\*\*
-
-
-
-Build a PowerShell based automation toolkit to streamline project creation, Git workflows, screenshot organization, and development environment setup.
-
-
-
-Following that, the next Kubernetes project will focus on deploying a \*\*production grade multi-tier application\*\* using the concepts learned throughout this lab.
-
->>>>>>> b7b21ac (Fix screenshot links in README)
