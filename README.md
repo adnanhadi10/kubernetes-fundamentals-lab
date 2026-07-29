@@ -704,46 +704,6 @@ The following functionality was successfully demonstrated throughout the project
 
 
 
-# Screenshots
-
-
-
-The following screenshots document the major milestones completed throughout this project.
-
-
-
-| Phase | Screenshot |
-
-|--------|------------|
-
-| Container Runtime Installation | `01-containerd-running.png` |
-
-| Kubernetes Control Plane | `02-control-plane-initialized.png` |
-
-| Cluster Health | `03-cluster-health.png` |
-
-| First Deployment | `04-first-deployment.png` |
-
-| Service Creation | `05-service-created.png` |
-
-| Scaling to Three Replicas | `06-scaled-to-three-replicas.png` |
-
-| Self Healing Demonstration | `07-self-healing.png` |
-
-| Rolling Update | `08-rolling-update.png` |
-
-| ReplicaSet History | `09-replicaset-history.png` |
-
-| NGINX Ingress Controller | `10-ingress-controller.png` |
-
-| Ingress Resource | `11-ingress-resource.png` |
-
-
-
----
-
-
-
 # Troubleshooting
 
 
