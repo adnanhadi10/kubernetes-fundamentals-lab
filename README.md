@@ -3,7 +3,20 @@
 
 
 > A Kubernetes cluster built from scratch using \*\*kubeadm\*\* on \*\*Ubuntu Server\*\* hosted in \*\*Google Cloud Platform (GCP)\*\*.
+![Kubernetes Architecture](architecture/kubernetes-architecture.png)
 
+
+
+## Key Skills Demonstrated
+
+- Kubernetes cluster initialization with kubeadm
+- Container orchestration using Deployments and ReplicaSets
+- Service discovery with ClusterIP Services
+- HTTP routing with NGINX Ingress Controller
+- Horizontal scaling and self-healing
+- Rolling updates with zero downtime
+- YAML manifest creation and management
+- Kubernetes architecture and troubleshooting
 
 
 ## Project Overview
